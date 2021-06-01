@@ -14,6 +14,7 @@ import kodlamaio.hrms.core.utilities.result.SuccessResult;
 import kodlamaio.hrms.core.validation.VerificationService;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.entities.concretes.Employer;
+import lombok.var;
 
 @Service
 public class AuthManager implements AuthService {
@@ -36,12 +37,7 @@ public class AuthManager implements AuthService {
 	    return EMAIL_REGEX.matcher(email).matches();
 	}
 	
-	private boolean checkIfConfirmPassword(String password , String confirmPassword) {
-		if(!password.equals(confirmPassword)) {
-			return false;
-		}
-		return true;
-	}
+
 
 	@Override
 	public Result registerEmployer(Employer employer, String confirmPassword) {
@@ -50,7 +46,10 @@ public class AuthManager implements AuthService {
 			return new ErrorResult("Invalid email address. Please enter your email address correctly.");
 		}
 		
-		else if(!checkIfConfirmPassword(employer.getPassword(), confirmPassword)) {
+		else if(employer.getPassword()!=confirmPassword) {
+			System.out.println(employer.getPassword());
+			System.out.println(confirmPassword);
+			
 			return new ErrorResult("Password does not match. Please re-enter your password.");
 		}
 		var result = this.employerService.add(employer);
@@ -70,7 +69,7 @@ public class AuthManager implements AuthService {
 		{
 			return new ErrorResult("Invalid email address. Please enter your email address correctly.");
 		}
-		else if(!checkIfConfirmPassword(candidate.getPassword(), confirmPassword)) {
+    	else if(candidate.getPassword()!= confirmPassword) {
 			return new ErrorResult("Password does not match. Please re-enter your password.");
 		}
         var result = this.candidateService.add(candidate);

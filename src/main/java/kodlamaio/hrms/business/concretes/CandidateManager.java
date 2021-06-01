@@ -44,14 +44,6 @@ public class CandidateManager implements CandidateService{
 		return true;	
 	}
 	
-	private boolean checkIfRealPerson(Candidate candidate) {
-		if(!this.checkMernisService.checkIfRealCandidate(Long.parseLong(candidate.getIdentityNumber()), candidate.getFirstName(), candidate.getLastName(), candidate.getBirthDate()))  {
-			return false;
-		}
-		return true;
-	}
-
-
 	@Override
 	public DataResult<List<Candidate>> getAll() {
 		return new  SuccessDataResult<List<Candidate>>(this.candidateDao.findAll());
@@ -70,7 +62,7 @@ public class CandidateManager implements CandidateService{
 	
 	@Override
 	public Result add(Candidate candidate) {
-		if(!checkIfRealPerson(candidate)){
+		if(checkMernisService.checkIfRealTcNo(candidate)){
 			return new ErrorResult("Not a valid person");
 		}
 		else if(!validationForCandidate(candidate)) {

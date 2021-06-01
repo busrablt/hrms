@@ -1,9 +1,9 @@
 package kodlamaio.hrms.core.adapter;
 
-import java.util.Date;
-
+import kodlamaio.hrms.entities.concretes.Candidate;
 
 public interface CheckMernisService {
-	public boolean checkIfRealCandidate(long identityNumber,String firstName,String lastName,Date birthDate);
+    boolean checkIfRealTcNo(Candidate candidate);
+
 
 }

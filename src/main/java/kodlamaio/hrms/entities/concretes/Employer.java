@@ -16,10 +16,10 @@ public class Employer extends User {
 	@Column(name="company_name")
 	private String companyName;
 	
-	@Column(name="web_adress")
+	@Column(name="web_address")
 	private String webAdress;
 	
-	@Column(name="telefon_number")
+	@Column(name="phone_number")
 	private String telefonNumber;
 	
 	

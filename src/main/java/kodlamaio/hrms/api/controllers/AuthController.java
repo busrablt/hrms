@@ -28,7 +28,7 @@ public class AuthController {
 	}
 	
 
-	@PostMapping("/registerJobSeeker")
+	@PostMapping("/registerCandidate")
 	public Result registerJobSeeker(@RequestBody Candidate candidate ,String confirmPassword) {
 		return this.authService.registerCandidate (candidate, confirmPassword);
 	}

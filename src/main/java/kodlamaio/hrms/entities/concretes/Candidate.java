@@ -1,6 +1,5 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.util.Date;
 
 import javax.persistence.*;
 
@@ -25,7 +24,7 @@ public class Candidate extends User {
 	private String identityNumber;
 	
 	@Column(name="birth_date")
-	private Date birthDate;
+	private int birthDate;
 	
 	 @Transient //It means that a field in the Entity class will not have a column counterpart in the database.
 	 private String passwordValidation;
