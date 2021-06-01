@@ -1,0 +1,87 @@
+package kodlamaio.hrms.business.concretes;
+
+import java.util.List;
+import java.util.Objects;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import kodlamaio.hrms.business.abstracts.CandidateService;
+import kodlamaio.hrms.core.adapter.CheckMernisService;
+import kodlamaio.hrms.core.utilities.result.DataResult;
+import kodlamaio.hrms.core.utilities.result.ErrorResult;
+import kodlamaio.hrms.core.utilities.result.Result;
+import kodlamaio.hrms.core.utilities.result.SuccessDataResult;
+import kodlamaio.hrms.core.utilities.result.SuccessResult;
+import kodlamaio.hrms.dataAccess.abstracts.CandidateDao;
+import kodlamaio.hrms.entities.concretes.Candidate;
+
+@Service
+public class CandidateManager implements CandidateService{
+	private CheckMernisService checkMernisService;
+	private CandidateDao candidateDao;
+	
+	@Autowired
+	public CandidateManager(CandidateDao candidateDao, CheckMernisService checkMernisService) {
+		super();
+		this.candidateDao = candidateDao;
+		this.checkMernisService = checkMernisService;
+	}
+	
+	private boolean validationForCandidate(Candidate candidate) {
+		if (Objects.isNull(candidate.getIdentityNumber()) || Objects.isNull(candidate.getFirstName()) || Objects.isNull(candidate.getLastName()) 
+				|| Objects.isNull(candidate.getEmail()) || Objects.isNull(candidate.getPassword()) || Objects.isNull(candidate.getBirthDate())) {
+			return false;
+		}
+		
+	  return true;
+	}
+	
+	private boolean checkIfEmailExists(String email) {
+		if(this.candidateDao.findByEmail(email) !=null) {
+			return false;
+		}
+		return true;	
+	}
+	
+	private boolean checkIfRealPerson(Candidate candidate) {
+		if(!this.checkMernisService.checkIfRealCandidate(Long.parseLong(candidate.getIdentityNumber()), candidate.getFirstName(), candidate.getLastName(), candidate.getBirthDate()))  {
+			return false;
+		}
+		return true;
+	}
+
+
+	@Override
+	public DataResult<List<Candidate>> getAll() {
+		return new  SuccessDataResult<List<Candidate>>(this.candidateDao.findAll());
+	}
+
+
+	@Override
+	public DataResult<Candidate> getByEmail(String email) {
+		return new SuccessDataResult<Candidate>(this.candidateDao.findByEmail(email));
+	}
+
+	@Override
+	public DataResult<Candidate> getByIdentityNumber(String identityNumber) {
+		return new SuccessDataResult<Candidate>(this.candidateDao.findByIdentityNumber(identityNumber));
+	}
+	
+	@Override
+	public Result add(Candidate candidate) {
+		if(!checkIfRealPerson(candidate)){
+			return new ErrorResult("Not a valid person");
+		}
+		else if(!validationForCandidate(candidate)) {
+			return new ErrorResult("You have entered incomplete information. Please check your information again.");
+		}
+		if(!this.checkIfEmailExists(candidate.getEmail())){
+			return new ErrorResult("This email address already exists.");
+		}
+		this.candidateDao.save(candidate);
+		return new SuccessResult("Candidate successfully added.");
+	}
+
+
+}
