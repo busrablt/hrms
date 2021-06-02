@@ -1,5 +1,7 @@
 package kodlamaio.hrms.entities.concretes;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 import lombok.*;
@@ -22,6 +24,7 @@ public class Employer extends User {
 	@Column(name="phone_number")
 	private String telefonNumber;
 	
-	
+	@OneToMany(mappedBy = "employer")
+	private List<JobAdvert> jobAdverts;
 
 }

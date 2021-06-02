@@ -46,10 +46,7 @@ public class AuthManager implements AuthService {
 			return new ErrorResult("Invalid email address. Please enter your email address correctly.");
 		}
 		
-		else if(employer.getPassword()!=confirmPassword) {
-			System.out.println(employer.getPassword());
-			System.out.println(confirmPassword);
-			
+		if(!employer.getPassword().equals( confirmPassword)) {
 			return new ErrorResult("Password does not match. Please re-enter your password.");
 		}
 		var result = this.employerService.add(employer);
@@ -69,7 +66,7 @@ public class AuthManager implements AuthService {
 		{
 			return new ErrorResult("Invalid email address. Please enter your email address correctly.");
 		}
-    	else if(candidate.getPassword()!= confirmPassword) {
+		if(candidate.getPassword().equals( confirmPassword)) {
 			return new ErrorResult("Password does not match. Please re-enter your password.");
 		}
         var result = this.candidateService.add(candidate);
@@ -79,7 +76,6 @@ public class AuthManager implements AuthService {
 				return new SuccessResult("Employer Registered.");
 			}
 		}
-		
 		return new ErrorResult();
 		
 

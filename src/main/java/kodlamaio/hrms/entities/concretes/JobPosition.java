@@ -1,10 +1,14 @@
 package kodlamaio.hrms.entities.concretes;
 
-import lombok.Data;
+import lombok.*;
+
+import java.util.List;
 
 import javax.persistence.*;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "job_positions")
 public class JobPosition {
@@ -16,14 +20,8 @@ public class JobPosition {
     @Column(name = "position")
     private String position;
     
-    public JobPosition()
-    {
-    	
-    }
-
-	public JobPosition(int id, String position) {
-		super();
-		this.id = id;
-		this.position = position;
-	}
+    @OneToMany(mappedBy = "jobPosition")
+	private List<JobAdvert> jobAdverts;
+    
+    
 }

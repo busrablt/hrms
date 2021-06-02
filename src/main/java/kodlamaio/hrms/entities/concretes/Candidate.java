@@ -11,7 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 @PrimaryKeyJoinColumn(name = "id", referencedColumnName = "id")
-@Table(name="candidates")
+@Table(name="cities")
 public class Candidate extends User {
 	
 	@Column(name="first_name")
