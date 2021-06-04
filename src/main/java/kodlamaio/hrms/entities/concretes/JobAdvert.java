@@ -6,9 +6,10 @@ import javax.persistence.*;
 import lombok.*;
 
 @Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="job_advert")
+@Table(name="job_adverts")
 public class JobAdvert {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,18 +20,16 @@ public class JobAdvert {
 	private String jobAdvertName;
 	
 	@ManyToOne()
-	@Column(name = "employer_id")
-	private int employerId;
+	@JoinColumn(name = "employer_id")
+	private Employer employer;
 	
 	@ManyToOne
 	@JoinColumn(name = "job_position_id")
-	@Column(name = "job_position_id")
-	private int jobPositionId;
+	private JobPosition jobPosition;
 	
 	@ManyToOne
 	@JoinColumn(name = "city_id")
-	@Column(name = "city_id")
-	private int cityId;
+	private City city;
 	
 	@Column(name = "salary_max")
 	private int salaryMax;
@@ -46,5 +45,11 @@ public class JobAdvert {
 	
 	@Column(name = "application _deadline")
 	private LocalDate applicationDeadline;
+	
+	@Column(name = "published_date")
+	private LocalDate publishedDate;
+	
+	@Column (name = "is_open",columnDefinition="boolean default true")
+	private boolean isOpen;
 
 }

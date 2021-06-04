@@ -25,12 +25,6 @@ public class JobPositionManager implements JobPositionService{
 		super();
 		this.jobPositionDao = jobPositionDao;
 	}
-	private boolean checkIfPositionExists(String jobPosition) {
-		if(this.jobPositionDao.findByPosition(jobPosition) != null) {
-			return false;
-		}
-		return true;
-	}
 
 	@Override
 	public DataResult<List<JobPosition>> getAll() {
@@ -39,11 +33,17 @@ public class JobPositionManager implements JobPositionService{
 
 	@Override
 	public Result add(JobPosition jobPosition) {
-		if(!this.checkIfPositionExists(jobPosition.getPosition())) {
+		if(getJobByPosition(jobPosition.getPosition()).getData() != null){
 			return new ErrorResult("This position already exists in the system.");
 		}
 		this.jobPositionDao.save(jobPosition);
-		return new SuccessResult("Job position added");
+	    return new SuccessResult("Job position added");
+		
+	}
+
+	@Override
+	public DataResult<JobPosition> getJobByPosition(String position) {
+		return new SuccessDataResult<JobPosition>(this.jobPositionDao.getByPosition(position));
 	}
 
 	

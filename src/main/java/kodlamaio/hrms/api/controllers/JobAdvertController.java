@@ -16,10 +16,8 @@ import kodlamaio.hrms.core.utilities.result.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvert;
 
 
-
-
 @RestController
-@RequestMapping("/api/jobadverts/")
+@RequestMapping("/api/jobadverts")
 public class JobAdvertController {
 	private JobAdvertService jobAdvertService;
 
@@ -29,28 +27,28 @@ public class JobAdvertController {
 		this.jobAdvertService = jobAdvertService;
 	}
 	
-	
-	@GetMapping("getall")
-	public DataResult<List<JobAdvert>> getAll(){
-		return this.jobAdvertService.getAll();
-	} 
-	
-	@PostMapping("add")
+	@PostMapping("/add")
 	public Result add(@RequestBody JobAdvert product) {
 		return this.jobAdvertService.add(product);
 	}
 	
-	@GetMapping("getAllByPage")
+	@GetMapping("/getall")
+	public DataResult<List<JobAdvert>> getAll(){
+		return this.jobAdvertService.getAll();
+	} 
+	
+	
+	@GetMapping("/getAllByPage")
 	DataResult<List<JobAdvert>> getAll(int pageNo, int pageSize){
 		return this.jobAdvertService.getAll(pageNo, pageSize);
 	}
 	
-	@GetMapping("getAllDesc")
+	@GetMapping("/getAllDesc")
 	public DataResult<List<JobAdvert>> getAllSorted() {
 		return this.jobAdvertService.getAllSorted();
 	}
 	
-	@GetMapping("getByNameJobAdvert")
+	@GetMapping("/getByNameJobAdvert")
 	public DataResult<JobAdvert> getByProductName(@RequestParam String productName){
 		return this.jobAdvertService.getByJobAdvertName(productName);
 	}

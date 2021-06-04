@@ -37,12 +37,6 @@ public class CandidateManager implements CandidateService{
 	  return true;
 	}
 	
-	private boolean checkIfEmailExists(String email) {
-		if(this.candidateDao.findByEmail(email) !=null) {
-			return false;
-		}
-		return true;	
-	}
 	
 	@Override
 	public DataResult<List<Candidate>> getAll() {
@@ -62,13 +56,13 @@ public class CandidateManager implements CandidateService{
 	
 	@Override
 	public Result add(Candidate candidate) {
-		if(checkMernisService.checkIfRealTcNo(candidate)){
+		if(!checkMernisService.checkIfRealTcNo(candidate)){
 			return new ErrorResult("Not a valid person");
 		}
 		else if(!validationForCandidate(candidate)) {
 			return new ErrorResult("You have entered incomplete information. Please check your information again.");
 		}
-		if(!this.checkIfEmailExists(candidate.getEmail())){
+		if(getByEmail(candidate.getEmail()).getData()!=null){
 			return new ErrorResult("This email address already exists.");
 		}
 		this.candidateDao.save(candidate);

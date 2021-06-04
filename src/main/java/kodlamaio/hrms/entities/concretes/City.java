@@ -3,18 +3,20 @@ package kodlamaio.hrms.entities.concretes;
 import java.util.List;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="city")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdverts"})
+@Table(name="cities")
 
 public class City {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
 	@Column(name="id")
 	private int id;
 	
