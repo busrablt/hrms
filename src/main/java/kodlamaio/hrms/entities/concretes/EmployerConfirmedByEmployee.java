@@ -9,7 +9,8 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployerConfirmendByEmployee {
+@Table(name="employer_confirmed_by_employee")
+public class EmployerConfirmedByEmployee {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

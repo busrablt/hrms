@@ -37,7 +37,14 @@ public class AuthManager implements AuthService {
 	    return EMAIL_REGEX.matcher(email).matches();
 	}
 	
-
+	public boolean confirmPassword(String password,String confirmPassword) 
+    {    
+        if (password.equals(confirmPassword)) {
+            
+            return true;
+        }
+        return false;
+    }
 
 	@Override
 	public Result registerEmployer(Employer employer, String confirmPassword) {
@@ -46,7 +53,7 @@ public class AuthManager implements AuthService {
 			return new ErrorResult("Invalid email address. Please enter your email address correctly.");
 		}
 		
-		if(!employer.getPassword().equals( confirmPassword)) {
+		if(!this.confirmPassword(employer.getPassword(), confirmPassword)) {
 			return new ErrorResult("Password does not match. Please re-enter your password.");
 		}
 		var result = this.employerService.add(employer);
@@ -66,14 +73,14 @@ public class AuthManager implements AuthService {
 		{
 			return new ErrorResult("Invalid email address. Please enter your email address correctly.");
 		}
-		if(candidate.getPassword().equals( confirmPassword)) {
+		if(!this.confirmPassword(candidate.getPassword(), confirmPassword)) {
 			return new ErrorResult("Password does not match. Please re-enter your password.");
 		}
         var result = this.candidateService.add(candidate);
 		
 		if(result.isSuccess()) {
 			if(this.verificationService.sendVerificationCode(candidate.getEmail())) {
-				return new SuccessResult("Employer Registered.");
+				return new SuccessResult("Employer registered.");
 			}
 		}
 		return new ErrorResult();

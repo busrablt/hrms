@@ -57,9 +57,10 @@ public class CandidateManager implements CandidateService{
 	@Override
 	public Result add(Candidate candidate) {
 		if(!checkMernisService.checkIfRealTcNo(candidate)){
-			return new ErrorResult("Not a valid person");
-		}
-		else if(!validationForCandidate(candidate)) {
+		return new ErrorResult("Not a valid person");
+     	}
+		else
+		if(!validationForCandidate(candidate)) {
 			return new ErrorResult("You have entered incomplete information. Please check your information again.");
 		}
 		if(getByEmail(candidate.getEmail()).getData()!=null){

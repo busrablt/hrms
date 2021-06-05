@@ -7,6 +7,7 @@ import lombok.*;
 
 
 @Entity
+@Table(name="verification_codes")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,7 +22,7 @@ public class VerificationCode {
 	private String verificationCode;
 	
 	
-	@Column(name="is_confirmed",columnDefinition="boolean default false")//?
+	@Column(name="is_confirmed")//?
 	private boolean isConfirmed;
 	
 	@Column(name="confirmed_date")

@@ -1,6 +1,8 @@
 package kodlamaio.hrms.entities.concretes;
 
 
+import java.util.List;
+
 import javax.persistence.*;
 
 import lombok.*;
@@ -11,7 +13,7 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 @PrimaryKeyJoinColumn(name = "id", referencedColumnName = "id")
-@Table(name="cities")
+@Table(name="candidates")
 public class Candidate extends User {
 	
 	@Column(name="first_name")
@@ -26,8 +28,10 @@ public class Candidate extends User {
 	@Column(name="birth_date")
 	private int birthDate;
 	
-	 @Transient //It means that a field in the Entity class will not have a column counterpart in the database.
-	 private String passwordValidation;
+	@OneToMany(mappedBy = "candidate")
+	List<CurriculumVitae> curriculumVitaes;
+	
+	 
 	
 
 }

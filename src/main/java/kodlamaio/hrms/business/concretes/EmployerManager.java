@@ -25,12 +25,6 @@ public class EmployerManager implements EmployerService{
 		super();
 		this.employerDao = employerDao;
 	}
-	private boolean checkIfEmailExists(String email) {
-		if(this.employerDao.findByEmail(email) != null) {
-			return false;
-		}
-		return true;
-	}
 	
 	private boolean validationForEmployer(Employer employer) {
 		if (Objects.isNull(employer.getCompanyName()) || Objects.isNull(employer.getWebAdress()) || Objects.isNull(employer.getEmail()) 
@@ -53,7 +47,7 @@ public class EmployerManager implements EmployerService{
 	
 	@Override
 	public Result add(Employer employer) {
-		if(!this.checkIfEmailExists(employer.getEmail())){
+		if(getByEmail(employer.getEmail()).getData()!=null){
 			return new ErrorResult("This email address already exists.");
 		}
 		if(!this.validationForEmployer(employer)) {
