@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import javax.persistence.*;
 
+
 import lombok.*;
 
 @Data
@@ -27,6 +28,6 @@ public class Experience {
 	private LocalDate endDate;
 	
 	@ManyToOne
-    @JoinColumn(name = "curriculum_vitae_id")
-    private CurriculumVitae curriculumVitae;
+    @JoinColumn(name = "candidate_id")
+    private Candidate candidate;
 }

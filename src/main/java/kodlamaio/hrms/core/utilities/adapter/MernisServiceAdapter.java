@@ -1,4 +1,4 @@
-package kodlamaio.hrms.core.adapter;
+package kodlamaio.hrms.core.utilities.adapter;
 
 import org.springframework.stereotype.Service;
 

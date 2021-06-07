@@ -1,4 +1,4 @@
-package kodlamaio.hrms.core.utilities.result;
+package kodlamaio.hrms.core.utilities.results;
 
 public class Result {
 	private boolean success;

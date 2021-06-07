@@ -3,6 +3,7 @@ package kodlamaio.hrms.entities.concretes;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +27,7 @@ public class Language {
 	private int level;
 	
 	@ManyToOne
-    @JoinColumn(name = "curriculum_vitae_id")
-    private CurriculumVitae curriculumVitae;
+    @JoinColumn(name = "candidate_id")
+    private Candidate candidate;
 
 }

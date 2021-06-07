@@ -1,4 +1,4 @@
-package kodlamaio.hrms.core.validation;
+package kodlamaio.hrms.core.verification;
 
 import java.util.UUID;
 

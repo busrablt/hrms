@@ -1,17 +1,15 @@
 package kodlamaio.hrms.business.concretes;
 
-import java.util.regex.Pattern;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.AuthService;
 import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.business.abstracts.EmployerService;
-import kodlamaio.hrms.core.utilities.result.ErrorResult;
-import kodlamaio.hrms.core.utilities.result.Result;
-import kodlamaio.hrms.core.utilities.result.SuccessResult;
-import kodlamaio.hrms.core.validation.VerificationService;
+import kodlamaio.hrms.core.utilities.results.ErrorResult;
+import kodlamaio.hrms.core.utilities.results.Result;
+import kodlamaio.hrms.core.utilities.results.SuccessResult;
+import kodlamaio.hrms.core.verification.VerificationService;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.entities.concretes.Employer;
 import lombok.var;
@@ -32,10 +30,6 @@ public class AuthManager implements AuthService {
 		this.verificationService = verificationService;
 	}
 	
-	public static boolean isEmailValidation(String email) {
-	    final Pattern EMAIL_REGEX = Pattern.compile("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", Pattern.CASE_INSENSITIVE);
-	    return EMAIL_REGEX.matcher(email).matches();
-	}
 	
 	public boolean confirmPassword(String password,String confirmPassword) 
     {    
@@ -48,10 +42,6 @@ public class AuthManager implements AuthService {
 
 	@Override
 	public Result registerEmployer(Employer employer, String confirmPassword) {
-		if(!isEmailValidation(employer.getEmail()))
-		{
-			return new ErrorResult("Invalid email address. Please enter your email address correctly.");
-		}
 		
 		if(!this.confirmPassword(employer.getPassword(), confirmPassword)) {
 			return new ErrorResult("Password does not match. Please re-enter your password.");
@@ -69,10 +59,7 @@ public class AuthManager implements AuthService {
 
 	@Override
 	public Result registerCandidate(Candidate candidate, String confirmPassword) {
-		if(!isEmailValidation(candidate.getEmail()))
-		{
-			return new ErrorResult("Invalid email address. Please enter your email address correctly.");
-		}
+		
 		if(!this.confirmPassword(candidate.getPassword(), confirmPassword)) {
 			return new ErrorResult("Password does not match. Please re-enter your password.");
 		}

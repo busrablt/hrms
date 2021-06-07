@@ -2,7 +2,6 @@ package kodlamaio.hrms.entities.concretes;
 
 import javax.persistence.*;
 
-
 import lombok.*;
 
 
@@ -10,17 +9,17 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "programming_skills")
-public class ProgrammingSkill {
+@Table(name = "cover_letter")
+public class CoverLetter {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "programming_name")
-	private String programmingName;
+	@Column(name = "note")
+	private String note;
 	
-	@ManyToOne
+	@ManyToOne()
     @JoinColumn(name = "candidate_id")
     private Candidate candidate;
 

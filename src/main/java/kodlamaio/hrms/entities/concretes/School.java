@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "schools")
+
 public class School {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +34,7 @@ public class School {
 	private LocalDate graduatedDate;
 	
 	@ManyToOne
-    @JoinColumn(name = "curriculum_vitae_id")
-    private CurriculumVitae curriculumVitae;
+    @JoinColumn(name = "candidate_id")
+    private Candidate candidate;
 
 }

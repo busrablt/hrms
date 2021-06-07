@@ -2,6 +2,7 @@ package kodlamaio.hrms.entities.concretes;
 
 import javax.persistence.*;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,8 +24,7 @@ public class SocialMediaAccount {
 	private String link;
 	
 	@ManyToOne
-    @JoinColumn(name = "curriculum_vitae_id")
-    private CurriculumVitae curriculumVitae;
-	
+    @JoinColumn(name = "candidate_id")
+    private Candidate candidate;
 
 }

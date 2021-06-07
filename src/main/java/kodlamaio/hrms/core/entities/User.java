@@ -1,10 +1,14 @@
-package kodlamaio.hrms.entities.concretes;
+package kodlamaio.hrms.core.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @Data
 @AllArgsConstructor
@@ -19,9 +23,14 @@ public class User {
     @Column(name="id")
 	private int id;
 	
+	@Email(message = "Invalid email address. Please enter your email address correctly.")
+	@NotBlank
+	@NotNull
 	@Column(name="email")
 	private String email;
 	
+	@NotNull
+	@NotBlank
 	@Column(name="password")
 	private String password;
 

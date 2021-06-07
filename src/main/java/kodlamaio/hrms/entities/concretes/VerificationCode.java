@@ -22,7 +22,7 @@ public class VerificationCode {
 	private String verificationCode;
 	
 	
-	@Column(name="is_confirmed")//?
+	@Column(name="is_confirmed")
 	private boolean isConfirmed;
 	
 	@Column(name="confirmed_date")
