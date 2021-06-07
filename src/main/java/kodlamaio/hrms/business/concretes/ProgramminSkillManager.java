@@ -1,10 +1,13 @@
 package kodlamaio.hrms.business.concretes;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 import kodlamaio.hrms.business.abstracts.ProgrammingSkillService;
+import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
@@ -28,9 +31,13 @@ public class ProgramminSkillManager implements ProgrammingSkillService {
 	}
 
 	@Override
-	public DataResult<ProgrammingSkill> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public DataResult<List<ProgrammingSkill>> getAll() {
+		return new SuccessDataResult<List<ProgrammingSkill>>(this.programmingSkillDao.findAll());
+	}
+
+	@Override
+	public DataResult<ProgrammingSkill> getById(int id) {
+		return new SuccessDataResult<ProgrammingSkill>(this.programmingSkillDao.getById(id));
 	}
 
 }
