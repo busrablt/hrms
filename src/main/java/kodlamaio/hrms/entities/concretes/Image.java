@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import javax.persistence.*;
 
+import kodlamaio.hrms.core.entities.User;
 import lombok.*;
 
 @Data
@@ -21,10 +22,10 @@ public class Image {
 	private String url;
 	
 	@Column(name = "created_date")
-	private LocalDate createdDate;
+	private LocalDate createdDate = LocalDate.now();
 	
 	@OneToOne
-	@JoinColumn(name = "candidate_id")
-	private Candidate candidate;
+	@JoinColumn(name = "user_id")
+	private User user;
 
 }

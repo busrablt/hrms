@@ -29,5 +29,4 @@ public class Language {
 	@ManyToOne
     @JoinColumn(name = "candidate_id")
     private Candidate candidate;
-
 }

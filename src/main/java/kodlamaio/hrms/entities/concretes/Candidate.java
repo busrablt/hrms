@@ -56,13 +56,7 @@ public class Candidate extends User {
     @OneToMany(mappedBy = "candidate")
     private List<SocialMediaAccount> socialMediaAccounts;
 	
-	@JsonIgnore
-	@OneToOne(mappedBy = "candidate", optional=false, fetch=FetchType.LAZY)
-	private Image image;
 	
-	
-	
-	 
 	
 
 }

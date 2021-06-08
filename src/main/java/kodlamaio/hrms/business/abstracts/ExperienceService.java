@@ -10,5 +10,6 @@ public interface ExperienceService {
 	Result add(Experience experience);
 	DataResult<List<Experience>> getAll();
 	DataResult<Experience> getById(int id);
+	DataResult<List<Experience>> getByCandidate_Id(int candidateId);
 	
 }

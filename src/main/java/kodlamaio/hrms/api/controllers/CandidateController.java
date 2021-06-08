@@ -4,8 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
-import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
 
@@ -34,8 +36,13 @@ public class CandidateController {
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody Candidate candidate){
-		return this.candidateService.add(candidate);
+	public ResponseEntity<?> add(@RequestBody @Valid Candidate candidate){
+		return ResponseEntity.ok(this.candidateService.add(candidate));
+	}
+	
+	@GetMapping("/cv")
+	public ResponseEntity<?> getCv(@RequestParam int candidateId){
+		return ResponseEntity.ok(this.candidateService.getCandidateCv(candidateId));
 	}
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class) 

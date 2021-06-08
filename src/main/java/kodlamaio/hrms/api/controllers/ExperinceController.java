@@ -9,37 +9,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
-import kodlamaio.hrms.business.abstracts.SchoolService;
+import kodlamaio.hrms.business.abstracts.ExperienceService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.School;
+import kodlamaio.hrms.entities.concretes.Experience;
 
 @RestController
-@RequestMapping("/api/schools")
-public class SchoolController {
-	private SchoolService schoolService;
+@RequestMapping("/api/experiences")
+public class ExperinceController {
+	private ExperienceService experienceService;
 
 	@Autowired
-	public SchoolController(SchoolService schoolService) {
+	public ExperinceController(ExperienceService experienceService) {
 		super();
-		this.schoolService = schoolService;
+		this.experienceService = experienceService;
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody School school) {
-		return this.schoolService.add(school);
+	public Result add (@RequestBody Experience experience) {
+		return this.experienceService.add(experience);
 	}
 	
 	@GetMapping("/getAll")
-	public DataResult<List<School>> getAll(){
-		return this.schoolService.getAll();
+	public DataResult<List<Experience>> getAll(){
+		return this.experienceService.getAll();
 	}
 	
 	@GetMapping("/getByCandidateId")
-	public DataResult<List<School>> getByCandidateId(int candidateId){
-		return this.schoolService.getByCandidateId(candidateId);
+	public DataResult<List<Experience>> getByCandidateId(int candidateId){
+		return this.experienceService.getByCandidate_Id(candidateId);
 	}
 
 }

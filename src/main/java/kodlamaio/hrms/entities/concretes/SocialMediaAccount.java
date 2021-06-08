@@ -1,3 +1,4 @@
+  
 package kodlamaio.hrms.entities.concretes;
 
 import javax.persistence.*;

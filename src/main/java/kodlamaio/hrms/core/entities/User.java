@@ -5,6 +5,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import kodlamaio.hrms.entities.concretes.Image;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,5 +36,9 @@ public class User {
 	@NotBlank
 	@Column(name="password")
 	private String password;
+	
+	@JsonIgnore
+	@OneToOne(mappedBy = "user", optional=false, fetch=FetchType.LAZY)
+	private Image image;
 
 }

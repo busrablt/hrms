@@ -29,14 +29,14 @@ public class ImageUploadManager implements ImageUploadService{
 	@Override
 	public DataResult<Map> uploadImageFile(MultipartFile imageFile) {
 		try {
-
       
 			@SuppressWarnings("unchecked")
 			Map<String, String> resultMap =(Map<String, String>) cloudinary.uploader().upload(imageFile.getBytes(), ObjectUtils.emptyMap());
 
             return new SuccessDataResult<>(resultMap);
 
-        } catch (IOException e) {
+        } 
+		catch (IOException e) {
             e.printStackTrace();
 
         }

@@ -40,4 +40,9 @@ public class ExperienceManager implements ExperienceService {
 		return new SuccessDataResult<Experience>(this.experienceDao.getById(id));
 	}
 
+	@Override
+	public DataResult<List<Experience>> getByCandidate_Id(int candidateId) {
+		return new SuccessDataResult<List<Experience>>(this.experienceDao.getByCandidate_Id(candidateId));
+	}
+
 }

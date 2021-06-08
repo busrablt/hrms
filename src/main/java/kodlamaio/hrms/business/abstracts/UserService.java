@@ -9,5 +9,7 @@ import kodlamaio.hrms.core.utilities.results.Result;
 public interface UserService {
 	DataResult<List<User>> getAll();
 	Result add(User user);
+	DataResult<User> getById(int id);
+	
 
 }
