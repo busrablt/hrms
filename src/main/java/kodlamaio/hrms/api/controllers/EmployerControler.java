@@ -16,7 +16,9 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Employer;
+import kodlamaio.hrms.entities.dtos.EmployerDto;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/employers")
 public class EmployerControler {
@@ -42,6 +44,13 @@ public class EmployerControler {
 	public Result add(@RequestBody Employer employer) {
 		return this.employerService.add(employer);
 	}
+	
+	@GetMapping("/getEmployerDto")
+	public DataResult<List<EmployerDto>> getDto(){
+		return this.employerService.getDto();
+	}
+	
+	
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class) 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)

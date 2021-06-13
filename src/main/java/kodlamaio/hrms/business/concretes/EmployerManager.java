@@ -14,6 +14,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.dataAccess.abstracts.EmployerDao;
 import kodlamaio.hrms.entities.concretes.Employer;
+import kodlamaio.hrms.entities.dtos.EmployerDto;
 
 @Service
 public class EmployerManager implements EmployerService{
@@ -28,7 +29,7 @@ public class EmployerManager implements EmployerService{
 	
 	private boolean validationForEmployer(Employer employer) {
 		if (Objects.isNull(employer.getCompanyName()) || Objects.isNull(employer.getWebAdress()) || Objects.isNull(employer.getEmail()) 
-				|| Objects.isNull(employer.getTelefonNumber()) || Objects.isNull(employer.getPassword())){
+				|| Objects.isNull(employer.getPhoneNumber()) || Objects.isNull(employer.getPassword())){
 			return false;
 		}
 		
@@ -58,6 +59,12 @@ public class EmployerManager implements EmployerService{
 		
 	}
 
+	@Override
+	public DataResult<List<EmployerDto>> getDto() {
+		return new SuccessDataResult<List<EmployerDto>>(this.employerDao.getDto());
+	}
+
+	
 	
 
 }

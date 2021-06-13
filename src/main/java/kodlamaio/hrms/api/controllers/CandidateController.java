@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.*;
 import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.entities.concretes.Candidate;
+import kodlamaio.hrms.entities.dtos.CandidateDto;
 import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/candidates")
 public class CandidateController {
@@ -43,6 +45,11 @@ public class CandidateController {
 	@GetMapping("/cv")
 	public ResponseEntity<?> getCv(@RequestParam int candidateId){
 		return ResponseEntity.ok(this.candidateService.getCandidateCv(candidateId));
+	}
+	
+	@GetMapping("/getCandidateDto")
+	public DataResult<List<CandidateDto>> getDto(){
+		return this.candidateService.getDto();
 	}
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class) 

@@ -24,7 +24,7 @@ public class Image {
 	@Column(name = "created_date")
 	private LocalDate createdDate = LocalDate.now();
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 

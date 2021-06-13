@@ -6,12 +6,14 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 import kodlamaio.hrms.entities.concretes.Image;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -37,8 +39,8 @@ public class User {
 	@Column(name="password")
 	private String password;
 	
-	@JsonIgnore
-	@OneToOne(mappedBy = "user", optional=false, fetch=FetchType.LAZY)
-	private Image image;
+    @JsonIgnore
+	@OneToMany(mappedBy = "user")
+	private List<Image> images;
 
 }

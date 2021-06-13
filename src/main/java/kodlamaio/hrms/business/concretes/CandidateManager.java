@@ -22,6 +22,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateDao;
 import kodlamaio.hrms.entities.concretes.Candidate;
+import kodlamaio.hrms.entities.dtos.CandidateDto;
 import kodlamaio.hrms.entities.dtos.CvDto;
 
 @Service
@@ -114,6 +115,12 @@ public class CandidateManager implements CandidateService{
 		cv.setSocialMediaAccounts(this.socialMediaAccountService.getByCandidate_Id(candidateId).getData());
 		return new SuccessDataResult<CvDto>(cv);
 	
+	}
+
+
+	@Override
+	public DataResult<List<CandidateDto>> getDto() {
+		return new SuccessDataResult<List<CandidateDto>>(this.candidateDao.getDto());
 	}
 
 

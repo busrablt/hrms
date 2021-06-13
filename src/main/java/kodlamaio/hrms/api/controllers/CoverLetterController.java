@@ -3,7 +3,9 @@ package kodlamaio.hrms.api.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.CoverLetterService;
@@ -23,12 +25,12 @@ public class CoverLetterController {
 	}
 	
 	@PostMapping("/add")
-	public Result add(CoverLetter coverLetter) {
+	public Result add(@RequestBody CoverLetter coverLetter) {
 		return this.coverLetterService.add(coverLetter);	
 	}
 	
 	@GetMapping("/getByCandidateId")
-	public DataResult<CoverLetter> getByCandidateId(int candidateId) {
+	public DataResult<CoverLetter> getByCandidateId(@RequestParam int candidateId) {
 		return this.coverLetterService.getByCandidateId(candidateId);
 	}
 

@@ -26,7 +26,7 @@ public class Employer extends User {
 	private String webAdress;
 	
 	@Column(name="phone_number")
-	private String telefonNumber;
+	private String phoneNumber;
 	
 	@OneToMany(mappedBy = "employer")
 	private List<JobAdvert> jobAdverts;
