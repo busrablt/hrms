@@ -1,8 +1,6 @@
 package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
-import java.util.Objects;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,14 +53,7 @@ public class CandidateManager implements CandidateService{
 	}
 
 
-	private boolean validationForCandidate(Candidate candidate) {
-		if (Objects.isNull(candidate.getIdentityNumber()) || Objects.isNull(candidate.getFirstName()) || Objects.isNull(candidate.getLastName()) 
-				|| Objects.isNull(candidate.getEmail()) || Objects.isNull(candidate.getPassword()) || Objects.isNull(candidate.getBirthDate())) {
-			return false;
-		}
-		
-	  return true;
-	}
+
 	
 	
 	@Override
@@ -86,10 +77,6 @@ public class CandidateManager implements CandidateService{
 		if(!checkMernisService.checkIfRealTcNo(candidate)){
 		return new ErrorResult("Not a valid person");
      	}
-		else
-		if(!validationForCandidate(candidate)) {
-			return new ErrorResult("You have entered incomplete information. Please check your information again.");
-		}
 		if(getByEmail(candidate.getEmail()).getData()!=null){
 			return new ErrorResult("This email address already exists.");
 		}

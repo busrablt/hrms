@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.*;
@@ -24,6 +25,7 @@ public class City {
 	@Column(name="city_name")
 	private String cityName;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "city") 
 	private List<JobAdvert> jobAdverts;
 

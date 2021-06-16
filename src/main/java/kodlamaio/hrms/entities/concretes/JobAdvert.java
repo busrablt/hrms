@@ -49,7 +49,7 @@ public class JobAdvert {
 	@Column(name = "published_date")
 	private LocalDate publishedDate;
 	
-	@Column (name = "is_open",columnDefinition="boolean default true")
+	@Column (name = "is_open",columnDefinition="boolean default false")
 	private boolean isOpen;
 
 }

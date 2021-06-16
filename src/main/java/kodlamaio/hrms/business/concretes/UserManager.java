@@ -40,4 +40,9 @@ public class UserManager implements UserService {
 		return new SuccessDataResult<User>(this.userDao.getById(id));
 	}
 
+	@Override
+	public DataResult<User> getByEmail(String email) {
+		return new SuccessDataResult<User>(this.userDao.getByEmail(email));
+	}
+
 }

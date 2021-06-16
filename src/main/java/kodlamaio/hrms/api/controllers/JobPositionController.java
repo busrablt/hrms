@@ -17,7 +17,7 @@ import kodlamaio.hrms.entities.concretes.JobPosition;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/jobpositions")
+@RequestMapping("/api/jobPositions")
 public class JobPositionController {
 
 	
@@ -29,7 +29,7 @@ private JobPositionService jobPositionService;
 		this.jobPositionService = jobPositionService;
 	}
 
-	@GetMapping("/getall")
+	@GetMapping("/getAll")
 	public DataResult<List<JobPosition>> getAll(){
 		return this.jobPositionService.getAll();
 	}
