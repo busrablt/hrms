@@ -1,6 +1,7 @@
 package kodlamaio.hrms.entities.concretes;
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.*;
@@ -25,11 +26,14 @@ public class Candidate extends User {
 	@Column(name="last_name")
 	private String lastName;
 	
+	@Column(name="phone_number")
+	private String phoneNumber;
+	
 	@Column(name="identity_number")
 	private String identityNumber;
 	
 	@Column(name="birth_date")
-	private int birthDate;
+	private LocalDate birthDate;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "candidate")

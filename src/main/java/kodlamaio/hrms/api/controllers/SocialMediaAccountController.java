@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,7 +28,7 @@ public class SocialMediaAccountController {
 	}
 	
 	@PostMapping("/add")
-	public Result add(SocialMediaAccount socialMediaAccount) {
+	public Result add(@RequestBody SocialMediaAccount socialMediaAccount) {
 		return this.socialMediaAccountService.add(socialMediaAccount);
 	}
 	

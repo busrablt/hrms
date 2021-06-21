@@ -15,10 +15,11 @@ import kodlamaio.hrms.business.abstracts.JobAdvertService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvert;
+import kodlamaio.hrms.entities.dtos.JobAdvertDto;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/jobadverts")
+@RequestMapping("/api/jobAdverts")
 public class JobAdvertController {
 	private JobAdvertService jobAdvertService;
 
@@ -27,13 +28,18 @@ public class JobAdvertController {
 		super();
 		this.jobAdvertService = jobAdvertService;
 	}
-	
-	@PostMapping("/add")
-	public Result add(@RequestBody JobAdvert product) {
-		return this.jobAdvertService.add(product);
+	@PostMapping("/addDto")
+	public Result add(@RequestBody JobAdvertDto jobAdvertDto) {
+		System.out.println("INFO" +jobAdvertDto.toString());
+		return this.jobAdvertService.create(jobAdvertDto);
 	}
 	
-	@GetMapping("/getall")
+	@PostMapping("/add")
+	public Result add(@RequestBody JobAdvert jobAdvert) {
+		return this.jobAdvertService.add(jobAdvert);
+	}
+	
+	@GetMapping("/getAll")
 	public DataResult<List<JobAdvert>> getAll(){
 		return this.jobAdvertService.getAll();
 	} 

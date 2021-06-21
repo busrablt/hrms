@@ -9,7 +9,8 @@ import kodlamaio.hrms.entities.concretes.Employer;
 import kodlamaio.hrms.entities.dtos.EmployerDto;
 
 public interface EmployerDao extends JpaRepository<Employer,Integer>{
-	Employer findByEmail(String email);
+	Employer getByEmail(String email);
+	Employer getById(int id);
 	@Query("Select new  kodlamaio.hrms.entities.dtos.EmployerDto"
 	  		+ "(e.companyName,e.email, e.webAdress, e.phoneNumber, i.url) "
 	  		+ "From Employer e Inner Join e.images i")

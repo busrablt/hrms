@@ -15,10 +15,10 @@ public class MernisServiceAdapter implements CheckMernisService {
 
         try {
 
-            serviceResult = kpsPublicSoapProxy.TCKimlikNoDogrula(Long.parseLong(candidate.getIdentityNumber()),
-                    candidate.getFirstName().toUpperCase(),
-                    candidate.getLastName().toUpperCase(),
-                    candidate.getBirthDate());
+//            serviceResult = kpsPublicSoapProxy.TCKimlikNoDogrula(Long.parseLong(candidate.getIdentityNumber()),
+//                    candidate.getFirstName().toUpperCase(),
+//                    candidate.getLastName().toUpperCase(),
+//                    candidate.getBirthDate());
 
         } catch (Exception e) {
 

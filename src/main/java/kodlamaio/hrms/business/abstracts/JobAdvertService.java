@@ -5,6 +5,7 @@ import java.util.List;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvert;
+import kodlamaio.hrms.entities.dtos.JobAdvertDto;
 
 public interface JobAdvertService {
 	Result add (JobAdvert jobAdvert);
@@ -16,5 +17,6 @@ public interface JobAdvertService {
 	DataResult<List<JobAdvert>> getByJobAdvertNameAndEmployer(String jobAdvertName, int employerId);
 	DataResult<List<JobAdvert>> getByJobAdvertNameAndCity(String jobAdvertName, int cityId);
 	DataResult<List<JobAdvert>> getByNameAndCity(String jobAdvertName, int cityId);
+	Result create(JobAdvertDto jobAdvertDto);
 
 }

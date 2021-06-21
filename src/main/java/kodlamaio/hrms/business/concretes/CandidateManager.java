@@ -25,7 +25,7 @@ import kodlamaio.hrms.entities.dtos.CvDto;
 
 @Service
 public class CandidateManager implements CandidateService{
-	private CheckMernisService checkMernisService;
+	//private CheckMernisService checkMernisService;
 	private CandidateDao candidateDao;
 	private ImageService imageService;
 	private CoverLetterService coverLetterService;
@@ -36,12 +36,12 @@ public class CandidateManager implements CandidateService{
 	private SocialMediaAccountService socialMediaAccountService;
 	
 	@Autowired
-	public CandidateManager(CheckMernisService checkMernisService, CandidateDao candidateDao, ImageService imageService,
+	public CandidateManager( CandidateDao candidateDao, ImageService imageService,
 			CoverLetterService coverLetterService, ExperienceService experienceService, SchoolService schoolService,
 			LanguageService languageService, ProgrammingSkillService programmingSkillService,
 			SocialMediaAccountService socialMediaAccountService) {
 		super();
-		this.checkMernisService = checkMernisService;
+		//this.checkMernisService = checkMernisService;
 		this.candidateDao = candidateDao;
 		this.imageService = imageService;
 		this.coverLetterService = coverLetterService;
@@ -74,9 +74,9 @@ public class CandidateManager implements CandidateService{
 	
 	@Override
 	public Result add(Candidate candidate) {
-		if(!checkMernisService.checkIfRealTcNo(candidate)){
-		return new ErrorResult("Not a valid person");
-     	}
+//		if(!checkMernisService.checkIfRealTcNo(candidate)){
+//		return new ErrorResult("Not a valid person");
+//     	}
 		if(getByEmail(candidate.getEmail()).getData()!=null){
 			return new ErrorResult("This email address already exists.");
 		}

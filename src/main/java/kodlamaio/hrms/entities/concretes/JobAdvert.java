@@ -20,7 +20,7 @@ public class JobAdvert {
 	private String jobAdvertName;
 	
 	@ManyToOne()
-	@JoinColumn(name = "employer_id")
+	@JoinColumn(name = "employer_id") // employerId -> employer_id
 	private Employer employer;
 	
 	@ManyToOne
@@ -30,6 +30,14 @@ public class JobAdvert {
 	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private City city;
+	
+	@ManyToOne
+	@JoinColumn(name = "working_time_id")
+	private WorkingTime workingTime;
+	
+	@ManyToOne
+	@JoinColumn(name = "workplace_id")
+	private Workplace workplace;
 	
 	@Column(name = "salary_max")
 	private int salaryMax;

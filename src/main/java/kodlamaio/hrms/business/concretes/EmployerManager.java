@@ -26,8 +26,6 @@ public class EmployerManager implements EmployerService{
 		this.employerDao = employerDao;
 	}
 	
-
-	
 	@Override
 	public DataResult<List<Employer>> getAll() {
 		return new SuccessDataResult<List<Employer>>(this.employerDao.findAll());
@@ -35,7 +33,7 @@ public class EmployerManager implements EmployerService{
 
 	@Override
 	public DataResult<Employer> getByEmail(String email) {
-		return new SuccessDataResult<Employer>(this.employerDao.findByEmail(email));
+		return new SuccessDataResult<Employer>(this.employerDao.getByEmail(email));
 	}
 	
 	@Override
@@ -51,6 +49,12 @@ public class EmployerManager implements EmployerService{
 	@Override
 	public DataResult<List<EmployerDto>> getDto() {
 		return new SuccessDataResult<List<EmployerDto>>(this.employerDao.getDto());
+	}
+
+
+	@Override
+	public DataResult<Employer> getById(int id) {
+		return new SuccessDataResult<Employer>(this.employerDao.getById(id));
 	}
 
 	

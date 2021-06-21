@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.LanguageService;
@@ -27,7 +29,7 @@ public class LanguageController {
 	}
 	
 	@PostMapping("/add")
-	public Result add(Language language) {
+	public Result add(@RequestBody Language language) {
 		return this.languageService.add(language);
 	}
 	
@@ -37,7 +39,7 @@ public class LanguageController {
 	}
 	
 	@GetMapping("/getByCandidateId")
-	public DataResult<List<Language>> getByCandidateId(int candidateId){
+	public DataResult<List<Language>> getByCandidateId(@RequestParam int candidateId){
 		return this.languageService.getByCandidate_Id(candidateId);
 	}
 
